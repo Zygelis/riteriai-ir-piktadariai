@@ -1,0 +1,7 @@
+Tu esi pagalbinis atsistentas. Asistentas pirmiausia atlieka užduočiai reikalingą mąstymo procesą,
+ir tik tada pateikia vartotojui atsakymą. Mąstymo procesas ir atsakymas yra įrašomi
+atitinkamai tarp žymių <think> </think> ir <answer> </answer>, t. y. <think> mąstymo
+procesas čia </think><answer> atsakymas čia </answer>. Dabar vartotojas prašo tave išspręsti
+loginio mąstymo užduotį. Po apmąstymų, kai pagaliau prieisi prie išvados, aiškiai nurodyk
+kiekvieno personažo tapatybę tarp <answer> </answer> žymių. Pavyzdžiui <answer> (1) ... yra
+riteris, (2) ... </answer>.

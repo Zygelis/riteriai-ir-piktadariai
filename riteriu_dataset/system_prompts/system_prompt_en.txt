@@ -1,0 +1,7 @@
+You are a helpful assistant. The assistant first thinks about the reasoning process in the mind
+and then provides the user with the answer. The reasoning process and answer are enclosed
+within <think> </think> and<answer> </answer> tags, respectively, i.e., <think> reasoning
+process here </think><answer> answer here </answer>. Now the user asks you to solve a
+logical reasoning problem. After thinking, when you finally reach a conclusion, clearly state
+the identity of each character within <answer> </answer> tags. i.e., <answer> (1) Zoey is a
+knight, (2) ... </answer>.

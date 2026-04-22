@@ -1260,3 +1260,90 @@ function shuffle(array) {
   }
   return array;
 };
+
+/**
+* Batch generation helpers
+*/
+
+function stripSimpleHtml(html) {
+	if (typeof html !== "string") {
+		return "";
+	}
+	return html
+		.replace(/<br\s*\/?>/gi, "\n")
+		.replace(/<\/li>/gi, "\n")
+		.replace(/<li>/gi, "- ")
+		.replace(/<[^>]*>/g, "")
+		.replace(/\n{3,}/g, "\n\n")
+		.trim();
+}
+
+function runPuzzleByDifficulty(pg, difficulty) {
+	switch (difficulty) {
+		case "easy":
+			pg.easy();
+			break;
+		case "tricky":
+			pg.medium();
+			break;
+		case "trickier":
+			pg.hard();
+			break;
+		default:
+			throw new Error("Unknown difficulty '" + difficulty + "'. Use easy, tricky, or trickier.");
+	}
+}
+
+function generatePuzzleDataset(count, difficulty, options) {
+	var opts = options || {};
+	var includeReasoning = opts.includeReasoning === true;
+	var result = [];
+	var i;
+
+	for (i = 0; i < count; i++) {
+		var pg = new PuzzleGenerator();
+		runPuzzleByDifficulty(pg, difficulty);
+
+		var puzzle = pg.puzzle;
+		var statements = [];
+		var x;
+		for (x in puzzle.getStatements()) {
+			statements.push(puzzle.getStatements()[x].fullStatement());
+		}
+
+		var knaves = puzzle.knaveNames();
+		var knights = puzzle.knightNames();
+		var summaryHtml = pg.solutionSummary(knaves, knights);
+		var row = {
+			id: i + 1,
+			difficulty: difficulty,
+			islanders: puzzle.getIslanders().map(function(islander) {
+				return islander.name;
+			}),
+			statements: statements,
+			answer: {
+				knaves: knaves,
+				knights: knights
+			},
+			solutionSummaryHtml: summaryHtml,
+			solutionSummaryText: stripSimpleHtml(summaryHtml)
+		};
+
+		if (includeReasoning) {
+			var reasoningHtml = pg.showReasoning();
+			row.reasoningHtml = reasoningHtml;
+			row.reasoningText = stripSimpleHtml(reasoningHtml);
+		}
+
+		result.push(row);
+	}
+
+	return result;
+}
+
+const data = generatePuzzleDataset(5, "easy", { includeReasoning: true });
+
+const fs = require("fs");
+fs.writeFileSync("knaves_easy_5.json", JSON.stringify(data, null, 2), "utf-8");
+
+console.log("Dataset saved to knaves_easy_5.json");

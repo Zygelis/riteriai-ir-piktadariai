@@ -6,8 +6,8 @@ from lighteval.pipeline import ParallelismManager, Pipeline, PipelineParameters
 from lighteval.utils.imports import is_package_available
 
 MODEL_NAME = "Qwen/Qwen3.5-0.8B" # Qwen/Qwen3.5-4B
-# Kiti matematiniai, loginiai, bendrojo išprusimo benchmarkai: aime25, math, gsm8k
-BENCHMARKS = "aime25" # You can specify multiple benchmarks by separating them with commas, e.g. "aime25,math,gsm8k"
+# Kiti matematiniai, loginiai, bendrojo išprusimo benchmarkai: aime25, math, gsm8k, gpqa:diamond
+BENCHMARKS = "aime25" # You can specify multiple benchmarks by separating them with commas, e.g. "aime25,gpqa:diamond"
 MAX_SAMPLES = 1 # Maximum number of samples to evaluate per task. Set to None to evaluate all samples.
 BATCH_SIZE = 1 # Inference batch size. Adjust based on your GPU memory. Set to 1 for no batching.
 

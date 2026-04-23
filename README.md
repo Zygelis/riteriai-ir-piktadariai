@@ -25,5 +25,5 @@ python evaluate_model.py --model Qwen/Qwen3.5-4B --benchmark aime25 --max-sample
 
 Arba mažesnį modelį:
 ```
-python evaluate_model.py --model meta-llama/Llama-3.2-1B-Instruct --benchmark aime25 --max-samples 10 --batch-size 2
+python evaluate_model.py --model meta-llama/Llama-3.2-1B-Instruct --benchmark gpqa:diamond --max-samples 10 --batch-size 2
 ```
